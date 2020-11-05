@@ -18,11 +18,13 @@ class Order(list):
         
         print("\n***Possible Menus:\n")
         for menu in allowed_menus:
-            print(menu.replace('_', ' ').title())
+            print(menu.strip("menu").replace('_', ' ').title())
         
-        self.menu = input("\nWhich menu will you be ordering from?\n").lower().replace(' ', '_')
-        assert self.menu in allowed_menus
-        print(self.menu)
+        self.menu_option = input("\nWhich menu will you be ordering from?\n").lower().replace(' ', '_') + "_menu"
+        assert self.menu_option in allowed_menus
+        print(self.menu_option)
+        self.menu = [v for k, v in globals().items() if k == self.menu_option]
+        print(f"\nThis is the menu:\n{self.menu}")
         
         
 
