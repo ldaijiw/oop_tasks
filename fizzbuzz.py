@@ -6,13 +6,14 @@ multiples of both 3, 5 for fizzbuzz
 '''
 
 class Fizzbuzz:
+    # init with default values for fizz (3), buzz (5) 
     def __init__(self, fizz = 3, buzz = 5):
         self.fizz = fizz
         self.buzz = buzz
 
     def play_game(self, max_number = 100):
         print(f"New Game with\nFizz = {self.fizz}\nBuzz = {self.buzz}\n\n")
-        
+
         for num in range(1, max_number + 1):
             
             if (num%self.fizz == 0) and (num%self.buzz == 0):
