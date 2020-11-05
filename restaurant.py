@@ -1,3 +1,4 @@
+# Menu class that inherits from dictionary allowing for easier updating and initialising of menu
 class Menu(dict):
     def __init__(self, menu_items):
         for food, price in menu_items.items():
@@ -12,33 +13,40 @@ class Menu(dict):
 
         return "Hope you enjoy your visit\n***"
 
+
+# Order class that inherits from list allowing for easier appending functionality
 class Order(list):
     def __init__(self):
+        
+        # checks for all existing menus and prints to customer
         allowed_menus = [k for k, v in globals().items() if isinstance(v, Menu)]
         
         print("\n***\nPossible Menus:\n")
         for menu in allowed_menus:
             print(menu.strip("menu").replace('_', ' ').title())
         
+        # asks for customer option of menu and double checks that it's a valid choice
         self.menu_option = input("\nWhich menu will you be ordering from?\n").lower().replace(' ', '_') + "_menu"
         assert self.menu_option in allowed_menus
-        
+
         self.menu = [v for k, v in globals().items() if k == self.menu_option][0]
-        print(f"\nThis is the menu:\n{self.menu.keys()}")
+        print(self.menu)
         
+        # asks how many items they'd like to order  and which items they'd like
         num_items = int(input("\nHow many items would you like?\n"))
         for i in range(num_items):
             item = input("\nWhat would you like?\n")
             assert item in self.menu.keys()
             self.append(item)    
 
+        # prints back order to customer
         print(f"This is your order {self}. That'll cost {self.order_total()}")
 
 
     def what_is_my_order(self):
         print(self)
         
-
+    # calculates order total
     def order_total(self):
         total = 0
         for order_item in self:
@@ -46,9 +54,6 @@ class Order(list):
         
         return total
 
-
-    #def __str__(self):
-     #   s = f"Your order is "
 
 if __name__ == "__main__":
     japanese_items = {"sushi": 9, "ramen": 5, "katsu curry": 6}
