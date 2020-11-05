@@ -4,7 +4,7 @@ class Menu(dict):
             self.update({food: price})
     
     def __str__(self):
-        print("\n\n***\nWelcome!\nWe have amazing things on our menu:")
+        print("\n\n***\nHere's the menu:")
 
         # prints menu items in nice format with price formatting and capitalisation
         for food, price in self.items():
@@ -16,17 +16,39 @@ class Order(list):
     def __init__(self):
         allowed_menus = [k for k, v in globals().items() if isinstance(v, Menu)]
         
-        print("\n***Possible Menus:\n")
+        print("\n***\nPossible Menus:\n")
         for menu in allowed_menus:
             print(menu.strip("menu").replace('_', ' ').title())
         
         self.menu_option = input("\nWhich menu will you be ordering from?\n").lower().replace(' ', '_') + "_menu"
         assert self.menu_option in allowed_menus
-        print(self.menu_option)
-        self.menu = [v for k, v in globals().items() if k == self.menu_option]
-        print(f"\nThis is the menu:\n{self.menu}")
         
+        self.menu = [v for k, v in globals().items() if k == self.menu_option][0]
+        print(f"\nThis is the menu:\n{self.menu.keys()}")
         
+        num_items = int(input("\nHow many items would you like?\n"))
+        for i in range(num_items):
+            item = input("\nWhat would you like?\n")
+            assert item in self.menu.keys()
+            self.append(item)    
+
+        print(f"This is your order {self}. That'll cost {self.order_total()}")
+
+
+    def what_is_my_order(self):
+        print(self)
+        
+
+    def order_total(self):
+        total = 0
+        for order_item in self:
+            total += [price for food, price in self.menu.items() if food == order_item][0]
+        
+        return total
+
+
+    #def __str__(self):
+     #   s = f"Your order is "
 
 if __name__ == "__main__":
     japanese_items = {"sushi": 9, "ramen": 5, "katsu curry": 6}
@@ -34,7 +56,8 @@ if __name__ == "__main__":
     
     japan_menu = Menu(japanese_items)
     japan_lunch_menu = Menu(lunch_items)
-    print(japan_lunch_menu)
     japan_menu["ramune"] = 3
     
     leo_order = Order()
+    leo_order.what_is_my_order()
+    leo_order.order_total()
