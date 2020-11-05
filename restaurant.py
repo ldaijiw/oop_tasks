@@ -1,9 +1,18 @@
 class Menu(dict):
     def __init__(self, menu_items):
-        for item, price in menu_items.items():
-            self.update({item: price})
+        for food, price in menu_items.items():
+            self.update({food: price})
+    
+    def __str__(self):
+        print("Welcome!\nWe have amazing things on our menu:")
 
+        # prints menu items in nice format with price formatting and capitalisation
+        for food, price in self.items():
+            print("{}, Price: £{:,.2f}".format(food.title(), price))
 
+        return "Hope you enjoy your visit"
+
+class Order()
 
 
 if __name__ == "__main__":
@@ -13,3 +22,5 @@ if __name__ == "__main__":
     print(japan_menu)
     print(japan_menu.keys())
     print(japan_menu.values())
+    japan_menu["ramune"] = 3
+    print(japan_menu)
