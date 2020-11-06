@@ -110,6 +110,10 @@ class Calculator:
             print("Goodbye")
             return
         
+        else:
+            print("\nQUESTION NOT RECOGNISED PLEASE TRY AGAIN")
+            return
+        
         print(self.ans)
 
     
