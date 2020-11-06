@@ -4,27 +4,7 @@ class Calculator:
     def __init__(self):
         
         print("\n\n*****\nCalculator\n*****")
-        print("""
-        Options:
-        Addition: +
-        Subtraction: -
-        Division: /
-        Multiplication: *
-        Check if a number is divisible by another (returns True/False): divisible by
-        Work out the area of a shape: area
-        Inch/cm converter: inches or cm
         
-        Answer is also stored in memory and can be used for future calculations: ans
-
-        Example input questions:
-        5 + 7
-        10 * 3
-        ans + 3
-        144 divisible by 12
-        area
-        12 cm
-        """)
-
         self.running = True
 
         # continues to ask for new questions until told otherwise
@@ -34,7 +14,7 @@ class Calculator:
 
     def new_calculation(self):
         # input question, also gets rid of any potential spaces to prevent whitespace errors
-        question = input("\nWhat would you like to calculate\n(stop/exit to exit program)\n=>").replace(' ', '')
+        question = input("\nWhat would you like to calculate\n(help for more)\n=>").replace(' ', '')
         
         # checks for mathematical operators or other commands permitted in init description
         if '+' in question:
@@ -109,6 +89,10 @@ class Calculator:
             self.running = False
             print("Goodbye")
             return
+
+        elif 'help' in question:
+            self.help()
+            return
         
         else:
             print("\nQUESTION NOT RECOGNISED PLEASE TRY AGAIN")
@@ -177,8 +161,35 @@ class Calculator:
     def triangle_area(self, base, height):
         return base * height / 2
 
+
     def circle_area(self, radius):
         return math.pi * (radius**2)
+
+
+    def help(self):
+        print("""
+Options:
+Addition: +
+Subtraction: -
+Division: /
+Multiplication: *
+Check if a number is divisible by another (returns True/False): divisible by
+Work out the area of a shape: area
+Inch/cm converter: inches or cm
+
+Answer is also stored in memory and can be used for future calculations: ans
+
+Example input questions:
+5 + 7
+10 * 3
+ans + 3
+144 divisible by 12
+area
+12 cm
+
+Type exit or stop to terminate program
+        """)
+    
 
 
 if __name__ == "__main__":
