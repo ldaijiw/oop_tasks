@@ -14,29 +14,44 @@ class Calculator:
         question = input("\nWhat would you like to calculate\n").replace(' ', '')
         
         if '+' in question:
-            num1 = int(question[:question.find('+')])
-            num2 = int(question[question.find('+')+1:])
-            self.ans = self.add(num1, num2)
+            self.num1 = question[:question.find('+')]
+            self.num2 = question[question.find('+')+1:]
+
+            self.check_num_is_ans(self.num1, self.num2)
+            
+            self.ans = self.add(float(self.num1), float(self.num2))
 
         elif '-' in question:
-            num1 = int(question[:question.find('-')])
-            num2 = int(question[question.find('-')+1:])
-            self.ans = self.subtract(num1, num2)
+            self.num1 = question[:question.find('-')]
+            self.num2 = question[question.find('-')+1:]
+
+            self.check_num_is_ans(self.num1, self.num2)
+
+            self.ans = self.subtract(float(self.num1), float(self.num2))
         
         elif '/' in question:
-            num1 = int(question[:question.find('/')])
-            num2 = int(question[question.find('/')+1:])
-            self.ans = self.divide(num1, num2)
+            self.num1 = question[:question.find('/')]
+            self.num2 = question[question.find('/')+1:]
+
+            self.check_num_is_ans(self.num1, self.num2)
+
+            self.ans = self.divide(float(self.num1), float(self.num2))
 
         elif '*' in question:
-            num1 = int(question[:question.find('*')])
-            num2 = int(question[question.find('*')+1:])
-            self.ans = self.multiply(num1, num2)
+            self.num1 = question[:question.find('*')]
+            self.num2 = question[question.find('*')+1:]
+            
+            self.check_num_is_ans(self.num1, self.num2)
+
+            self.ans = self.multiply(float(self.num1), float(self.num2))
         
         elif 'divisibleby' in question:
-            num1 = int(question[:question.find('divisibleby')])
-            num2 = int(question[question.find('divisibleby')+11:])
-            self.ans = self.divisible_by(num1, num2)
+            self.num1 = question[:question.find('divisibleby')]
+            self.num2 = question[question.find('divisibleby')+11:]
+            
+            self.check_num_is_ans(self.num1, self.num2)
+
+            self.ans = self.divisible_by(float(self.num1), float(self.num2))
         
         elif 'stop' in question or 'exit' in question:    
             self.running = False
@@ -44,6 +59,13 @@ class Calculator:
         
         print(self.ans)
 
+    def check_num_is_ans(self, num1, num2):
+        if num1 == 'ans':
+            self.num1 = self.ans
+        elif num2 == 'ans':
+            self.num2 = self.ans
+        
+            
 
     def add(self, num1, num2):
         return num1 + num2
