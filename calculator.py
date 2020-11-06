@@ -56,15 +56,20 @@ class Calculator:
         elif 'stop' in question or 'exit' in question:    
             self.running = False
             print("Goodbye")
+            return
         
         print(self.ans)
 
     def check_num_is_ans(self, num1, num2):
-        if num1 == 'ans':
-            self.num1 = self.ans
-        elif num2 == 'ans':
-            self.num2 = self.ans
-        
+        try:
+            if num1 == 'ans':
+                self.num1 = self.ans
+            elif num2 == 'ans':
+                self.num2 = self.ans
+        except AttributeError:
+            print("\nNo answer stored in memory, please enter a new calculation\n")
+            self.new_calculation()
+            return    
             
 
     def add(self, num1, num2):
