@@ -80,6 +80,9 @@ Q, Z                               10
 - inch to cm converter
 - NOTE -> Must be in class and method format
 
+**EXTRA FEATURES ADDED**
+- added ``ans`` allowing previous answer to be stored and used for future calculations
+
 ## Task 5: DNA String Parsing
 
 The Problem:  
