@@ -8,7 +8,8 @@ class Calculator:
 
         while self.running:
             self.new_calculation()
-        
+
+
     def new_calculation(self):
 
         question = input("\nWhat would you like to calculate\n").replace(' ', '')
@@ -53,6 +54,14 @@ class Calculator:
 
             self.ans = self.divisible_by(float(self.num1), float(self.num2))
         
+        elif 'cm' in question:
+            self.num1 = question[:question.find('cm')]
+            self.ans = self.inch_cm_convert(float(self.num1), 'cm')
+        
+        elif 'inch' in question:
+            self.num1 = question[:question.find('inch')]
+            self.ans = self.inch_cm_convert(float(self.num1), 'inch')
+        
         elif 'stop' in question or 'exit' in question:    
             self.running = False
             print("Goodbye")
@@ -60,6 +69,7 @@ class Calculator:
         
         print(self.ans)
 
+    
     def check_num_is_ans(self, num1, num2):
         try:
             if num1 == 'ans':
@@ -75,23 +85,32 @@ class Calculator:
     def add(self, num1, num2):
         return num1 + num2
     
+
     def subtract(self, num1, num2):
         return num1 - num2
     
+
     def divide(self, num1, num2):
         if num2 == 0:
             return "Undefined"
         return num1 / num2
     
+
     def multiply(self, num1, num2):
         return num1 * num2
     
+
     def divisible_by(self, num1, num2):
         if num1 % num2 == 0:
             return True
         return False
     
+    def inch_cm_convert(self, num1, convert_from):
+        if convert_from == "inch":
+            return num1 * 2.54
     
+        elif convert_from == "cm":
+            return num1 / 2.54
 
 if __name__ == "__main__":
     new_calculator = Calculator()
