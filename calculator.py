@@ -15,6 +15,14 @@ class Calculator:
         Inch/cm converter: inches or cm
         
         Answer is also stored in memory and can be used for future calculations: ans
+
+        Example input questions:
+        5 + 7
+        10 * 3
+        ans + 3
+        144 divisible by 12
+        area
+        12 cm
         """)
 
         self.running = True
@@ -26,7 +34,7 @@ class Calculator:
 
     def new_calculation(self):
         # input question, also gets rid of any potential spaces to prevent whitespace errors
-        question = input("\nWhat would you like to calculate\nExample: 5 + 7\n(stop/exit to exit program)\n").replace(' ', '')
+        question = input("\nWhat would you like to calculate\n(stop/exit to exit program)\n").replace(' ', '')
         
         # checks for mathematical operators or other commands permitted in init description
         if '+' in question:
