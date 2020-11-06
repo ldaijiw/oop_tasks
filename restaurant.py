@@ -18,7 +18,7 @@ class Menu(dict):
 class Order(list):
     def __init__(self):
         self.make_order()
-        
+
     def make_order(self):
         # checks for all existing menus and prints to customer
         allowed_menus = [k for k, v in globals().items() if isinstance(v, Menu)]
