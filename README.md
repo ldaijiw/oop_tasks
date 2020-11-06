@@ -10,13 +10,64 @@ Simple game to substitute:
 Create class with option to change fizz, buzz, and max range to count up to.
 
 
+### Tasks
+
+Core:
+* Write a program that prints the numbers from 1 to 100.
+* For multiples of three print "Fizz" instead of the number
+* For the multiples of five print "Buzz" instead of the number
+* For numbers which are multiples of both three and five print "FizzBuzz".
+
+Extra:
+* make a new fizzbuzz file and make it functional
+* make it so we we can decide which numbers to substitute for fizz and buzz using functions
+
+
+
+Hint: loop, range, control flow
+
+### Acceptance Criteria
+
+* All core task are done
+* Code works with no error
+
+
+
 ## Task 2: Restaurant Order
 
 Menu and Order class allowing to create multiple menus and allowing customer choice of which menu to order from.
 
+### User Stories
+
+#### 1
+**AS a User I want to be able to see the menu in a formated way, so that I can order my meal.**
+
+#### 2
+**AS a User I want to be able to order 3 times, and have my responses added to a list so they aren't forgotten**
+
+#### 3
+**As a user, I want to have my order read back to me in formated way so I know what I ordered.**
+
 ## Task 3: Scrabble
 
 Scrabble word score calculator, returning score for word based on scrabble letter values.
+
+
+### Base Scrabble word calculator instructions 
+
+Given the below scoring create a Scrabble word calculator that will provide the correct scores dependent on the string provided. 
+
+```
+text
+Letter                             Value
+A, E, I, O, U, L, N, R, S, T       1
+D, G                               2
+B, C, M, P                         3
+F, H, V, W, Y                      4
+K                                  5
+J, X                               8
+Q, Z                               10
+```
 
 ## Task 4: Calculator
 
