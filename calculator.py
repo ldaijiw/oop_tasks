@@ -34,7 +34,7 @@ class Calculator:
 
     def new_calculation(self):
         # input question, also gets rid of any potential spaces to prevent whitespace errors
-        question = input("\nWhat would you like to calculate\n(stop/exit to exit program)\n").replace(' ', '')
+        question = input("\nWhat would you like to calculate\n(stop/exit to exit program)\n=>").replace(' ', '')
         
         # checks for mathematical operators or other commands permitted in init description
         if '+' in question:
