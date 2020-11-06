@@ -78,10 +78,12 @@ class Calculator:
             if 'triangle' in area_question:
                 base = input("\nBase length?\n")
                 height = input("\nHeight length?\n")
+                print("\nAnswer:\n")
                 self.ans = self.triangle_area(float(base), float(height))
             
             elif 'circle' in area_question:
                 radius = input("\nRadius length?\n")
+                print("\nAnswer:\n")
                 self.ans = self.circle_area(float(radius))
         
         # if stop or exit given terminates program
@@ -168,26 +170,24 @@ class Calculator:
 
     def help(self):
         print("""
-Options:
-Addition: +
-Subtraction: -
-Division: /
-Multiplication: *
-Check if a number is divisible by another (returns True/False): divisible by
-Work out the area of a shape: area
-Inch/cm converter: inches or cm
-
-Answer is also stored in memory and can be used for future calculations: ans
+    **Options**
++                   Addition
+-                   Subtraction
+/                   Division
+*                   Multiplication
+divisible by        Check if a number is divisible by another (returns True/False)
+area                Work out the area of a shape
+inches/cm           Inch/cm converter
+ans                 Answer is also stored in memory and can be used for future calculations
+exit/stop           Terminate program
 
 Example input questions:
-5 + 7
+5 + 7.5
 10 * 3
-ans + 3
+ans + 31
 144 divisible by 12
 area
 12 cm
-
-Type exit or stop to terminate program
         """)
     
 
