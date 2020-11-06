@@ -4,6 +4,7 @@ class Menu(dict):
         for food, price in menu_items.items():
             self.update({food: price})
     
+    
     def __str__(self):
         print("\n\n***\nHere's the menu:")
 
@@ -18,6 +19,7 @@ class Menu(dict):
 class Order(list):
     def __init__(self):
         self.make_order()
+
 
     def make_order(self):
         # checks for all existing menus and prints to customer

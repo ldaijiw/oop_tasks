@@ -1,4 +1,3 @@
-# calculator
 import math
 
 class Calculator:
@@ -17,22 +16,28 @@ class Calculator:
         
         Answer is also stored in memory and can be used for future calculations: ans
         """)
+
         self.running = True
 
+        # continues to ask for new questions until told otherwise
         while self.running:
             self.new_calculation()
 
 
     def new_calculation(self):
-
-        question = input("\nWhat would you like to calculate\n").replace(' ', '')
+        # input question, also gets rid of any potential spaces to prevent whitespace errors
+        question = input("\nWhat would you like to calculate (stop/exit to exit program)\n").replace(' ', '')
         
+        # checks for mathematical operators or other commands permitted in init description
         if '+' in question:
+            # after finding operator assigns 2 numbers accordingly
             self.num1 = question[:question.find('+')]
             self.num2 = question[question.find('+')+1:]
 
+            # checks if either input number given as ans 
             self.check_num_is_ans(self.num1, self.num2)
             
+            # performs calculation and assigns to answer attribute
             self.ans = self.add(float(self.num1), float(self.num2))
 
         elif '-' in question:
@@ -68,16 +73,20 @@ class Calculator:
             self.ans = self.divisible_by(float(self.num1), float(self.num2))
         
         elif 'cm' in question:
+            # if cm detected then converts number from cm to inches
             self.num1 = question[:question.find('cm')]
             self.ans = self.inch_cm_convert(float(self.num1), 'cm')
         
         elif 'inch' in question:
+            # if inch detected then converts number from inches to cm
             self.num1 = question[:question.find('inch')]
             self.ans = self.inch_cm_convert(float(self.num1), 'inch')
         
         elif 'area' in question:
+            # asks for which shape to calculate area from
             area_question = input("\nWhat shape would you like to calculate the area for?\n(Triangle/Circle)\n")
 
+            # asks for relevant dimensions depending on shape
             if 'triangle' in area_question:
                 base = input("\nBase length?\n")
                 height = input("\nHeight length?\n")
@@ -87,6 +96,7 @@ class Calculator:
                 radius = input("\nRadius length?\n")
                 self.ans = self.circle_area(float(radius))
         
+        # if stop or exit given terminates program
         elif 'stop' in question or 'exit' in question:    
             self.running = False
             print("Goodbye")
@@ -96,6 +106,10 @@ class Calculator:
 
     
     def check_num_is_ans(self, num1, num2):
+        '''
+        If either input number is written as ans, then assign that number to the previous answer that's recorded in memory.
+        If no answer is stored in memory then informs user to perform a new calculation.
+        '''
         try:
             if num1 == 'ans':
                 self.num1 = self.ans
@@ -126,12 +140,21 @@ class Calculator:
     
 
     def divisible_by(self, num1, num2):
+        '''
+        Returns True if num1 is perfectly divisible by num2
+        '''
         if num1 % num2 == 0:
             return True
         return False
     
     
     def inch_cm_convert(self, num1, convert_from):
+        '''
+        Converts between inches and cm
+        num1: length to convert
+        conver_from: scale to convert from
+        '''
+
         if convert_from == "inch":
             return num1 * 2.54
     

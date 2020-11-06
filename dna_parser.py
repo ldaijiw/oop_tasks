@@ -2,15 +2,18 @@
 
 class DNA_parser:
     def __init__(self, *args, **kwargs):
+        
         for key, value in kwargs.items():
             setattr(self, key, value)
 
+    # option to initialise a class with an input string.
     @classmethod
     def from_DNA_string(cls, dna_string):
         return cls(dna_string = dna_string.upper())
 
 
     def parse_dna(self):
+        # checks if dna string is stored, otherwise will ask user to give a new dna string
         if not hasattr(self, "dna_string"):
             print("NO DNA STRING CURRENTLY STORED")
             self.dna_string = input("\nPLEASE ENTER ONE NOW\n").upper()
