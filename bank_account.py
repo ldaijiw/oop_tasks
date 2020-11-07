@@ -63,7 +63,7 @@ class BankAccount(AccountHolderDetails):
         return f"NEW BALANCE: {self.__balance}"
 
     
-    def withdrawal(self, amount):
+    def withdraw(self, amount):
         if self.__balance - amount < 0:
             print("YOU DO NOT HAVE ENOUGH IN YOUR BALANCE")
             return
@@ -85,13 +85,44 @@ class manageAccount(BankAccount):
     def display_menu(self):
         print('''
         DISPLAY MENU
+        AVAILABLE ACTIONS:
+        personal details        displays relevant personal information
+        bank details            displays current bank account balance
+        deposit                 deposit money into your account
+        withdraw                withdraw money from your account
         '''
         )
+
+        self.continue_display = True
+        while self.continue_display:
+            self.user_action()    
+        
+        print("Thank you for using our services")
+
+    def user_action(self):
+        action = input("\nWhat would you like to do?\n(exit to stop program)\n").lower().replace(' ','')
+
+        if 'personaldetails' in action:
+            self.display_accountholder()
+        
+        elif 'bankdetails' in action:
+            self.display_bankdetails()
+        
+        elif 'deposit' in action:
+            value = float(input("\nHow much would you like to deposit?"))
+            self.deposit(value)
+            
+        elif 'exit' in action:
+            self.continue_display = False
+            return
+        else:
+            print("ACTION NOT RECOGNISED, PLEASE TRY AGAIN.")
+            return
         
 
 
 
 if __name__ == "__main__":
     new_account = manageAccount(name = "LEO WALTMANN")
-    new_account.display_accountholder()
-    new_account.display_bankdetails()
+    #new_account.display_accountholder()
+    #new_account.display_bankdetails()
