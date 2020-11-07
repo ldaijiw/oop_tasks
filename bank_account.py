@@ -34,18 +34,18 @@ class BankAccount(AccountHolderDetails):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        # if balance 
-        if not hasattr(self, 'balance'):
+        # if balance not specified in kwargs then will open a new account with balance 0
+        if 'balance' in kwargs.keys():
+            self.__balance = kwargs["balance"]
+        else:
             print("MAKING NEW ACCOUNT")
             self.open_new_account()
-        else:
-            self.__balance = kwargs["balance"]
         
+        self.__account_number = '123456'
+        self.__sort_code = '045454'
     
     
     def open_new_account(self):
-        self.__account_number = '123456'
-        self.__sort_code = '045454'
         self.__balance = 0
         
     
@@ -126,4 +126,4 @@ class manageAccount(BankAccount):
         
 
 if __name__ == "__main__":
-    new_account = manageAccount(dob = '13/07/1999', address = '210 hamer')
+    new_account = manageAccount(dob = '13/07/1999', address = '210 hamer', balance = 50)
