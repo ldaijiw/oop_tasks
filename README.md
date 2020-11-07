@@ -44,7 +44,7 @@ Menu and Order class allowing to create multiple menus and allowing customer cho
 
 **SOLUTION NOTES**
 - Menu class that inherits from dictionary, allowing for easier updating and initalising of menu, with keys (food item) and values (prices)
-- ''__str__'' method added to change formatting when called in a print() function
+- ``__str__`` method added to change formatting when called in a print() function
 
 
 ## Task 3: Scrabble
