@@ -38,6 +38,8 @@ class BankAccount(AccountHolderDetails):
         if not hasattr(self, 'balance'):
             print("MAKING NEW ACCOUNT")
             self.open_new_account()
+        else:
+            self.__balance = kwargs["balance"]
     
     
     def open_new_account(self):
@@ -122,9 +124,5 @@ class manageAccount(BankAccount):
             return
         
 
-
-
 if __name__ == "__main__":
     new_account = manageAccount(name = "LEO WALTMANN", dob = '13/07/1999', address = '210 hamer')
-    #new_account.display_accountholder()
-    #new_account.display_bankdetails()
