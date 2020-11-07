@@ -1,28 +1,26 @@
 # Account Holder Details with personal data
-
 class AccountHolderDetails:
     def __init__(self, **kwargs):
-        for key, value in kwargs.items():
-            setattr(self, key, value)
-        
         print("\n***\nSETTING UP ACCOUNT\n***\n")
 
-        if not hasattr(self, 'name'):
-            self.__name = input("\nPlease enter a name to continue\n").title()
-        else:
+        # if personal details not specified in init, will prompt user to enter details
+        if 'name' in kwargs.keys():
             self.__name = kwargs["name"].title()
-        
-        if not hasattr(self, 'dob'):
-            self.__dob = input("\nPlease enter your date of birth\n(DD/MM/YYYY)\n")
         else:
+            self.__name = input("\nPlease enter a name to continue\n").title()
+        
+        if 'dob' in kwargs.keys():
             self.__dob = kwargs["dob"]
-        
-        if not hasattr(self, 'address'):
-            self.__address = input("\nPlease enter your address\n").title()
         else:
+            self.__dob = input("\nPlease enter your date of birth\n(DD/MM/YYYY)\n")
+        
+        if 'address' in kwargs.keys():
             self.__address = kwargs["address"].title()
+        else:
+            self.__address = input("\nPlease enter your address\n").title()
 
     
+    # displays personal details
     def display_accountholder(self):
         print(f'''
         ACCOUNT HOLDER NAME: {self.__name}
@@ -30,16 +28,19 @@ class AccountHolderDetails:
         ADDRESS: {self.__address}
         ''')
 
-        
+
+# bank account class to hold bank account details and methods to deposit/withdraw etc.
 class BankAccount(AccountHolderDetails):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+        # if balance 
         if not hasattr(self, 'balance'):
             print("MAKING NEW ACCOUNT")
             self.open_new_account()
         else:
             self.__balance = kwargs["balance"]
+        
     
     
     def open_new_account(self):
@@ -125,4 +126,4 @@ class manageAccount(BankAccount):
         
 
 if __name__ == "__main__":
-    new_account = manageAccount(name = "LEO WALTMANN", dob = '13/07/1999', address = '210 hamer')
+    new_account = manageAccount(dob = '13/07/1999', address = '210 hamer')
