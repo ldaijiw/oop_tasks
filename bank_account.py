@@ -5,6 +5,8 @@ class AccountHolderDetails:
         for key, value in kwargs.items():
             setattr(self, key, value)
         
+        print("\n***SETTING UP ACCOUNT\n***\n")
+
         if not hasattr(self, 'name'):
             self.__name = input("\nPlease enter a name to continue\n").title()
         else:
@@ -20,11 +22,7 @@ class AccountHolderDetails:
         else:
             self.__address = kwargs["address"].title()
 
-        print(self.__name)
-        print(self.__dob)
-        print(self.__address)
-
-
+    
     def display_accountholder(self):
         print(f'''
         ACCOUNT HOLDER NAME: {self.__name}
@@ -80,24 +78,20 @@ class BankAccount(AccountHolderDetails):
         self.__balance *= 0.95
     
 class manageAccount(BankAccount):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.display_menu()
 
-    #def __init__(self):
+    def display_menu(self):
+        print('''
+        DISPLAY MENU
+        '''
+        )
         
-    
-    @property
-    def account_details(self):
-        account_details = {
-            "Account Holder": self.name,
-            "Balance": self.__balance,
-            "Account Number": self.__account_number,
-            "Sort Code": self.__sort_code
-        }
-        return account_details
+
+
 
 if __name__ == "__main__":
-    new_account = BankAccount(name = "LEO WALTMANN")
+    new_account = manageAccount(name = "LEO WALTMANN")
     new_account.display_accountholder()
     new_account.display_bankdetails()
-    new_account.deposit(50)
-    new_account.display_bankdetails()
-    #print(new_account.account_details)
