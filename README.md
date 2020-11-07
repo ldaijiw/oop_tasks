@@ -22,16 +22,10 @@ Extra:
 * make a new fizzbuzz file and make it functional
 * make it so we we can decide which numbers to substitute for fizz and buzz using functions
 
-
-
-Hint: loop, range, control flow
-
-### Acceptance Criteria
-
-* All core task are done
-* Code works with no error
-
-
+**SOLUTION NOTES**
+- class Fizzbuzz with ``__init__`` method assigning fizz and buzz values (default: 3, 5)
+- ``play_game`` method has a default max value of 100, loops through range of 1 to max value and returns different values according to fizzbuzz rules
+- added extra feature allowing user to choose different max numnber for the game to count up to
 
 ## Task 2: Restaurant Order
 
@@ -47,6 +41,11 @@ Menu and Order class allowing to create multiple menus and allowing customer cho
 
 #### 3
 **As a user, I want to have my order read back to me in formated way so I know what I ordered.**
+
+**SOLUTION NOTES**
+- Menu class that inherits from dictionary, allowing for easier updating and initalising of menu, with keys (food item) and values (prices)
+- ''__str__'' method added to change formatting when called in a print() function
+
 
 ## Task 3: Scrabble
 
