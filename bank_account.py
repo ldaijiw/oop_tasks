@@ -24,8 +24,13 @@ class AccountHolderDetails:
         print(self.__dob)
         print(self.__address)
 
-    def display(self):
-        print(self.__name)
+
+    def display_accountholder(self):
+        print(f'''
+        ACCOUNT HOLDER NAME: {self.__name}
+        DATE OF BIRTH: {self.__dob}
+        ADDRESS: {self.__address}
+        ''')
 
         
 class BankAccount(AccountHolderDetails):
@@ -41,16 +46,32 @@ class BankAccount(AccountHolderDetails):
         self.__account_number = '123456'
         self.__sort_code = '045454'
         self.__balance = 0
+        
+    
 
+    def display_bankdetails(self):
+        print(f'''
+        ACCOUNT NUMBER: ***{self.__account_number[-3:]}
+        SORT CODE: ***{self.__sort_code[-3:]}
+        BALANCE: {self.__balance}
+        ''')
 
     
     def deposit(self, amount):
+        if amount <= 0:
+            print("PLEASE DEPOSIT AMOUNT GREATER THAN ZERO")
+            return
         self.__balance += amount
+        return f"NEW BALANCE: {self.__balance}"
 
     
     def withdrawal(self, amount):
+        if self.__balance - amount < 0:
+            print("YOU DO NOT HAVE ENOUGH IN YOUR BALANCE")
+            return
         self.__balance -= amount
-    
+        return f"NEW BALANCE: {self.__balance}"
+
 
     def bank_fees(self):
         '''
@@ -74,6 +95,9 @@ class manageAccount(BankAccount):
         return account_details
 
 if __name__ == "__main__":
-    new_account = AccountHolderDetails(name = "LEO WALTMANN")
-    new_account.display()
+    new_account = BankAccount(name = "LEO WALTMANN")
+    new_account.display_accountholder()
+    new_account.display_bankdetails()
+    new_account.deposit(50)
+    new_account.display_bankdetails()
     #print(new_account.account_details)
