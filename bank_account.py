@@ -5,7 +5,7 @@ class AccountHolderDetails:
         for key, value in kwargs.items():
             setattr(self, key, value)
         
-        print("\n***SETTING UP ACCOUNT\n***\n")
+        print("\n***\nSETTING UP ACCOUNT\n***\n")
 
         if not hasattr(self, 'name'):
             self.__name = input("\nPlease enter a name to continue\n").title()
@@ -57,16 +57,14 @@ class BankAccount(AccountHolderDetails):
     
     def deposit(self, amount):
         if amount <= 0:
-            print("PLEASE DEPOSIT AMOUNT GREATER THAN ZERO")
-            return
+            return "PLEASE DEPOSIT AMOUNT GREATER THAN ZERO"
         self.__balance += amount
         return f"NEW BALANCE: {self.__balance}"
 
     
     def withdraw(self, amount):
         if self.__balance - amount < 0:
-            print("YOU DO NOT HAVE ENOUGH IN YOUR BALANCE")
-            return
+            return "YOU DO NOT HAVE ENOUGH IN YOUR BALANCE"
         self.__balance -= amount
         return f"NEW BALANCE: {self.__balance}"
 
@@ -110,8 +108,12 @@ class manageAccount(BankAccount):
         
         elif 'deposit' in action:
             value = float(input("\nHow much would you like to deposit?"))
-            self.deposit(value)
-            
+            print(self.deposit(value))
+
+        elif 'withdraw' in action:
+            value = float(input("\nHow much would you like to withdraw?"))
+            print(self.withdraw(value))
+
         elif 'exit' in action:
             self.continue_display = False
             return
@@ -123,6 +125,6 @@ class manageAccount(BankAccount):
 
 
 if __name__ == "__main__":
-    new_account = manageAccount(name = "LEO WALTMANN")
+    new_account = manageAccount(name = "LEO WALTMANN", dob = '13/07/1999', address = '210 hamer')
     #new_account.display_accountholder()
     #new_account.display_bankdetails()
