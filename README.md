@@ -125,7 +125,41 @@ Q, Z                               10
 - NOTE -> Must be in class and method format
 
 **SOLUTION NOTES**
+- Asks user for what calculation they'd like to perform then checks for each operator in the input string, assigning the 2 numbers accordingly
+```python
+question = input("\nWhat would you like to calculate\n(help for more)\n=>").replace(' ', '')
+    
+    # checks for mathematical operators or other commands permitted in init description
+    if '+' in question:
+        # after finding operator assigns 2 numbers accordingly
+        self.num1 = question[:question.find('+')]
+        self.num2 = question[question.find('+')+1:]
+
+    # checks if either input number given as ans 
+    self.check_num_is_ans(self.num1, self.num2)
+    
+    # performs calculation and assigns to answer attribute
+    self.ans = self.add(float(self.num1), float(self.num2))
+
+```
 - added ``ans`` allowing previous answer to be stored and used for future calculations
+```python
+ def check_num_is_ans(self, num1, num2):
+        '''
+        If either input number is written as ans, then assign that number to the previous answer that's recorded in memory.
+        If no answer is stored in memory then informs user to perform a new calculation.
+        '''
+        try:
+            if num1 == 'ans':
+                self.num1 = self.ans
+            elif num2 == 'ans':
+                self.num2 = self.ans
+        except AttributeError:
+            print("\nNo answer stored in memory, please enter a new calculation\n")
+            self.new_calculation()
+            return    
+```
+
 
 ## Task 5: DNA String Parsing
 
@@ -147,6 +181,13 @@ Sample Output:
 
 NOTE -> Must be in class and method format
 
+**SOLUTION NOTES**
+- Added ``@classmethod`` decorator to allow to create an instance of class from input string
+```python
+@classmethod
+def from_DNA_string(cls, dna_string):
+    return cls(dna_string = dna_string.upper())
+```
 
 ## Task 6: Bank Account
 
