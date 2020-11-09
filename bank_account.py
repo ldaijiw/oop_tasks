@@ -49,8 +49,8 @@ class BankAccount(AccountHolderDetails):
         self.__balance = 0
         
     
-
     def display_bankdetails(self):
+        # displays bank details with account number and sort code partially hidden 
         print(f'''
         ACCOUNT NUMBER: ***{self.__account_number[-3:]}
         SORT CODE: ***{self.__sort_code[-3:]}
@@ -59,6 +59,7 @@ class BankAccount(AccountHolderDetails):
 
     
     def deposit(self, amount):
+        # deposit money into account, checking that amount is greater than 0
         if amount <= 0:
             return "PLEASE DEPOSIT AMOUNT GREATER THAN ZERO"
         self.__balance += amount
@@ -66,7 +67,8 @@ class BankAccount(AccountHolderDetails):
 
     
     def withdraw(self, amount):
-        if self.__balance - amount < 0:
+        # withdraw money from account, checks if there is enough money in balance first
+        if self.__balance < amount:
             return "YOU DO NOT HAVE ENOUGH IN YOUR BALANCE"
         self.__balance -= amount
         return f"NEW BALANCE: {self.__balance}"
@@ -78,6 +80,8 @@ class BankAccount(AccountHolderDetails):
         '''
         self.__balance *= 0.95
     
+
+# class for user to manage their account
 class manageAccount(BankAccount):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -93,7 +97,8 @@ class manageAccount(BankAccount):
         withdraw                withdraw money from your account
         '''
         )
-
+        
+        # will continue displaying menu until told otherwise
         self.continue_display = True
         while self.continue_display:
             self.user_action()    
@@ -101,8 +106,10 @@ class manageAccount(BankAccount):
         print("Thank you for using our services")
 
     def user_action(self):
+        # prompts user for what action they'd like
         action = input("\nWhat would you like to do?\n(exit to stop program)\n").lower().replace(' ','')
 
+        # checks for keywords in user input, if not recognised will return without any action
         if 'personaldetails' in action:
             self.display_accountholder()
         

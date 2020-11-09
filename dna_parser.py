@@ -18,7 +18,7 @@ class DNA_parser:
             print("NO DNA STRING CURRENTLY STORED")
             self.dna_string = input("\nPLEASE ENTER ONE NOW\n").upper()
 
-        
+        # checks string for each letter: a, c, t, g
         self.a_count = self.dna_string.count('A')
         self.c_count = self.dna_string.count('C')
         self.t_count = self.dna_string.count('T')
