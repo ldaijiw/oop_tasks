@@ -25,7 +25,11 @@ Extra:
 **SOLUTION NOTES**
 - class Fizzbuzz with ``__init__`` method assigning fizz and buzz values (default: 3, 5)
 - ``play_game`` method has a default max value of 100, loops through range of 1 to max value and returns different values according to fizzbuzz rules
-- added extra feature allowing user to choose different max numnber for the game to count up to
+- added extra feature allowing user to choose different max number for the game to count up to
+```python
+def play_game(self, max_number = 100):
+        print(f"New Game with\nFizz = {self.fizz}\nBuzz = {self.buzz}\n\n")
+```
 
 ## Task 2: Restaurant Order
 
@@ -44,8 +48,37 @@ Menu and Order class allowing to create multiple menus and allowing customer cho
 
 **SOLUTION NOTES**
 - Menu class that inherits from dictionary, allowing for easier updating and initalising of menu, with keys (food item) and values (prices)
-- ``__str__`` method added to change formatting when called in a print() function
+```python
+class Menu(dict):
+    def __init__(self, menu_items):
+        for food, price in menu_items.items():
+            self.update({food: price})
+ 
+```
 
+- ``__str__`` method added to change formatting when called in a print() function
+```python
+def __str__(self):
+        print("\n\n***\nHere's the menu:")
+
+        # prints menu items in nice format with price formatting and capitalisation
+        for food, price in self.items():
+            print("{}, Price: £{:,.2f}".format(food.title(), price))
+
+        return "Hope you enjoy your visit\n***"
+```
+- Order class checks for all existing menus, then asks user which menu they'd like to order from 
+```python
+allowed_menus = [k for k, v in globals().items() if isinstance(v, Menu)]
+        
+```
+```python
+self.menu_option = input("\nWhich menu will you be ordering from?\n").lower().replace(' ', '_') + "_menu"
+        assert self.menu_option in allowed_menus
+
+        self.menu = [v for k, v in globals().items() if k == self.menu_option][0]
+```
+- Asks user how many items they'd like to order and which items from the menu that they've selected
 
 ## Task 3: Scrabble
 
@@ -68,6 +101,18 @@ J, X                               8
 Q, Z                               10
 ```
 
+**SOLUTION NOTES**
+- Used ``@property`` decorator to calculate the score and return as an attribute
+```python
+@property
+    def score(self):
+        score = 0
+        for word_letter in self.word:
+            # matches each letter in word to one of the keys in letter_scores dict, and adds matching value to score
+            score += [letter_value for letters, letter_value in self.letter_scores.items() if word_letter in letters][0]
+        return score
+```
+
 ## Task 4: Calculator
 
 - Build a basic object Orientated Calculator
@@ -79,7 +124,7 @@ Q, Z                               10
 - inch to cm converter
 - NOTE -> Must be in class and method format
 
-**EXTRA FEATURES ADDED**
+**SOLUTION NOTES**
 - added ``ans`` allowing previous answer to be stored and used for future calculations
 
 ## Task 5: DNA String Parsing
